@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>M&amp;S | 携帯回線・光回線販売パートナー</title>
+  <meta name="description" content="M&amp;Sは携帯回線・光回線などの通信ソリューションを通じ、個人・法人の通信コスト削減と快適な通信環境の実現を全力でサポートします。" />
+
+  <!-- Google Fonts: Noto Sans JP + Barlow Condensed -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       DESIGN SYSTEM — Japanese Minimalism × Tech Precision
+       Primary: #0A1628 (Deep Navy)
+       Accent:  #00C9FF (Cyan)
+       Emerald: #10B981
+       Surface: #F0F4F8
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:    #0A1628;
+      --navy-2:  #0D1F3C;
+      --navy-3:  #112952;
+      --cyan:    #00C9FF;
+      --cyan-2:  #0099CC;
+      --emerald: #10B981;
+      --white:   #FFFFFF;
+      --gray-50: #F8FAFC;
+      --gray-100:#F0F4F8;
+      --gray-200:#E2E8F0;
+      --gray-400:#94A3B8;
+      --gray-600:#475569;
+      --gray-800:#1E293B;
+      --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Noto Sans JP', 'Hiragino Sans', 'Meiryo', sans-serif;
+      background: var(--gray-50);
+      color: var(--gray-800);
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ---- Utility ---- */
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    @media (min-width: 768px) { .container { padding: 0 2.5rem; } }
+
+    .section-label {
+      display: inline-block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--cyan);
+    }
+
+    .section-title {
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 900;
+      color: var(--navy);
+      line-height: 1.25;
+      margin-top: 0.5rem;
+    }
+
+    .section-divider {
+      width: 2.5rem;
+      height: 2px;
+      background: var(--cyan);
+      margin-top: 1rem;
+    }
+
+    /* ---- Scroll Fade-in ---- */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.55s var(--ease-out), transform 0.55s var(--ease-out);
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ============================================================
+       HEADER
+    ============================================================ */
+    #site-header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(10, 22, 40, 0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(0, 201, 255, 0.12);
+      transition: background 0.3s;
+    }
+    #site-header .inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+
+    /* Logo */
+    .logo-link {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+    }
+    .logo-mark {
+      width: 42px; height: 42px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #0052a3, #00C9FF);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: #fff;
+      letter-spacing: 0.02em;
+      box-shadow: 0 4px 16px rgba(0, 201, 255, 0.25);
+      transition: transform 0.2s var(--ease-out);
+    }
+    .logo-link:hover .logo-mark { transform: scale(1.06); }
+    .logo-text-main {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 0.04em;
+      line-height: 1;
+    }
+    .logo-text-sub {
+      font-size: 0.6rem;
+      font-weight: 500;
+      color: var(--cyan);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-top: 3px;
+    }
+
+    /* Nav */
+    .site-nav {
+      display: none;
+      gap: 2.5rem;
+      list-style: none;
+    }
+    @media (min-width: 768px) { .site-nav { display: flex; } }
+    .site-nav a {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      position: relative;
+      transition: color 0.2s;
+    }
+    .site-nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0; right: 100%;
+      height: 1px;
+      background: var(--cyan);
+      transition: right 0.25s var(--ease-out);
+    }
+    .site-nav a:hover { color: #fff; }
+    .site-nav a:hover::after { right: 0; }
+
+    /* Mobile label */
+    .mobile-label {
+      display: block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--cyan);
+      text-transform: uppercase;
+    }
+    @media (min-width: 768px) { .mobile-label { display: none; } }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    #hero {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      padding: 7rem 0 5rem;
+      overflow: hidden;
+      background: var(--navy);
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://d2xsxph8kpxj0f.cloudfront.net/310519663384923944/5STUaMk3JxnoeccPLMCzez/hero-bg-PdFTkr9Nv6YLyALtPLzd4t.webp');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.35;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(10,22,40,0.92) 0%, rgba(10,22,40,0.6) 60%, rgba(0,82,163,0.3) 100%);
+    }
+    .hero-grid {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    @media (min-width: 1024px) {
+      .hero-grid { grid-template-columns: 7fr 5fr; gap: 4rem; }
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 1rem;
+      border: 1px solid rgba(0, 201, 255, 0.35);
+      border-radius: 100px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      background: rgba(0, 201, 255, 0.07);
+    }
+    .hero-badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 8px var(--cyan);
+      animation: blink 2s ease-in-out infinite;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    .hero-title {
+      font-size: clamp(2.2rem, 6vw, 3.8rem);
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.2;
+      margin-top: 1.25rem;
+      letter-spacing: -0.01em;
+    }
+    .hero-title .accent {
+      background: linear-gradient(90deg, var(--cyan), #7DF9FF, #10B981);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-desc {
+      margin-top: 1.5rem;
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.75);
+      max-width: 540px;
+      line-height: 1.9;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.9rem 2rem;
+      background: linear-gradient(135deg, var(--cyan-2), var(--cyan));
+      color: var(--navy);
+      font-weight: 700;
+      font-size: 0.9rem;
+      border-radius: 8px;
+      text-decoration: none;
+      box-shadow: 0 6px 24px rgba(0, 201, 255, 0.35);
+      transition: transform 0.18s var(--ease-out), box-shadow 0.18s var(--ease-out);
+      letter-spacing: 0.02em;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 32px rgba(0, 201, 255, 0.45);
+    }
+    .btn-primary:active { transform: scale(0.97); }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.9rem 2rem;
+      border: 1px solid rgba(255,255,255,0.3);
+      color: rgba(255,255,255,0.9);
+      font-weight: 500;
+      font-size: 0.9rem;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background 0.18s, border-color 0.18s, transform 0.18s var(--ease-out);
+      letter-spacing: 0.02em;
+    }
+    .btn-outline:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.55);
+      transform: translateY(-2px);
+    }
+    .btn-outline:active { transform: scale(0.97); }
+
+    /* Hero visual card */
+    .hero-visual {
+      position: relative;
+    }
+    .hero-card {
+      background: rgba(255,255,255,0.04);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(0, 201, 255, 0.18);
+      border-radius: 20px;
+      padding: 2rem;
+      overflow: hidden;
+    }
+    .hero-card-img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      border-radius: 12px;
+      display: block;
+    }
+    .hero-card-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .hero-stat-label {
+      font-size: 0.7rem;
+      color: var(--gray-400);
+      letter-spacing: 0.06em;
+    }
+    .hero-stat-value {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #fff;
+      margin-top: 0.25rem;
+    }
+    .hero-stat-value.em { color: var(--emerald); }
+
+    /* ============================================================
+       FEATURES (強み)
+    ============================================================ */
+    #features {
+      padding: 6rem 0;
+      background: #fff;
+    }
+    .features-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    .features-header .section-divider { margin: 1rem auto 0; }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    @media (min-width: 768px) {
+      .features-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .feature-card {
+      position: relative;
+      padding: 2.5rem 2rem;
+      border: 1px solid var(--gray-200);
+      border-radius: 16px;
+      background: var(--gray-50);
+      transition: transform 0.25s var(--ease-out), box-shadow 0.25s var(--ease-out), border-color 0.25s;
+      overflow: hidden;
+    }
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--cyan), #7DF9FF);
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+    .feature-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 48px rgba(0, 22, 60, 0.1);
+      border-color: rgba(0, 201, 255, 0.3);
+    }
+    .feature-card:hover::before { opacity: 1; }
+
+    .feature-index {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: rgba(0, 201, 255, 0.12);
+      line-height: 1;
+      margin-bottom: 1.25rem;
+      letter-spacing: -0.02em;
+    }
+
+    .feature-icon {
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.25rem;
+    }
+    .feature-icon svg { width: 22px; height: 22px; }
+
+    .feature-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.75rem;
+    }
+    .feature-desc {
+      font-size: 0.85rem;
+      color: var(--gray-600);
+      line-height: 1.85;
+    }
+
+    /* ============================================================
+       SERVICES
+    ============================================================ */
+    #services {
+      padding: 6rem 0;
+      background: var(--gray-100);
+    }
+    .services-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    .services-header .section-divider { margin: 1rem auto 0; }
+    .services-header p {
+      margin-top: 1rem;
+      font-size: 0.875rem;
+      color: var(--gray-600);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    @media (min-width: 1024px) {
+      .services-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    .service-card {
+      background: #fff;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid var(--gray-200);
+      box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+      transition: transform 0.25s var(--ease-out), box-shadow 0.25s var(--ease-out);
+    }
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,22,60,0.1);
+    }
+
+    .service-img-wrap {
+      position: relative;
+      height: 220px;
+      overflow: hidden;
+    }
+    .service-img-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s var(--ease-out);
+    }
+    .service-card:hover .service-img-wrap img { transform: scale(1.04); }
+    .service-img-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(10,22,40,0.7) 0%, transparent 60%);
+    }
+    .service-tag {
+      position: absolute;
+      top: 1rem; left: 1.25rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.75rem;
+      border-radius: 100px;
+    }
+
+    .service-body {
+      padding: 1.75rem 2rem 2rem;
+    }
+    .service-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.75rem;
+    }
+    .service-desc {
+      font-size: 0.85rem;
+      color: var(--gray-600);
+      line-height: 1.85;
+      margin-bottom: 1.25rem;
+    }
+    .service-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .service-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      font-size: 0.82rem;
+      color: var(--gray-600);
+      font-weight: 500;
+    }
+    .service-list li::before {
+      content: '';
+      flex-shrink: 0;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      margin-top: 0.55rem;
+    }
+
+    /* ============================================================
+       SIMULATOR
+    ============================================================ */
+    #simulator {
+      padding: 6rem 0;
+      background: var(--navy);
+      position: relative;
+      overflow: hidden;
+    }
+    #simulator::before {
+      content: '';
+      position: absolute;
+      bottom: -20%; right: -10%;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,201,255,0.08), transparent 70%);
+      pointer-events: none;
+    }
+
+    .simulator-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+    .simulator-header .section-title { color: #fff; }
+    .simulator-header p {
+      margin-top: 1rem;
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.6);
+    }
+    .simulator-header .section-divider { margin: 1rem auto 0; }
+
+    .simulator-card {
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(0, 201, 255, 0.15);
+      border-radius: 20px;
+      padding: 2.5rem;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .simulator-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+    @media (min-width: 768px) {
+      .simulator-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    .sim-group-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--cyan);
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 1.5rem;
+    }
+
+    .sim-field {
+      margin-bottom: 1.5rem;
+    }
+    .sim-field label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.03em;
+    }
+    .sim-input-wrap {
+      position: relative;
+    }
+    .sim-input-wrap input {
+      width: 100%;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 10px;
+      padding: 0.8rem 4rem 0.8rem 1rem;
+      color: #fff;
+      font-size: 1.1rem;
+      font-weight: 700;
+      font-family: 'Barlow Condensed', sans-serif;
+      letter-spacing: 0.04em;
+      outline: none;
+      transition: border-color 0.2s, background 0.2s;
+      -moz-appearance: textfield;
+    }
+    .sim-input-wrap input::-webkit-outer-spin-button,
+    .sim-input-wrap input::-webkit-inner-spin-button { -webkit-appearance: none; }
+    .sim-input-wrap input:focus {
+      border-color: var(--cyan);
+      background: rgba(0, 201, 255, 0.07);
+    }
+    .sim-unit {
+      position: absolute;
+      right: 1rem; top: 50%;
+      transform: translateY(-50%);
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.45);
+      pointer-events: none;
+    }
+
+    /* Result panel */
+    .sim-result {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+    .sim-result-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--cyan);
+    }
+    .sim-savings {
+      display: flex;
+      align-items: baseline;
+      gap: 0.4rem;
+      margin-top: 0.5rem;
+    }
+    .sim-savings-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(2.5rem, 8vw, 3.5rem);
+      font-weight: 700;
+      color: var(--emerald);
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+    .sim-savings-unit {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--emerald);
+    }
+    .sim-yearly {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.55);
+      margin-top: 0.5rem;
+    }
+    .sim-yearly strong {
+      color: #fff;
+      font-size: 0.95rem;
+    }
+    .sim-note {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.4);
+      line-height: 1.7;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+
+    /* ============================================================
+       PROFILE
+    ============================================================ */
+    #profile {
+      padding: 6rem 0;
+      background: #fff;
+    }
+    .profile-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    .profile-header .section-divider { margin: 1rem auto 0; }
+
+    .profile-card {
+      max-width: 760px;
+      margin: 0 auto;
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .profile-row {
+      display: flex;
+      flex-direction: column;
+      padding: 1.5rem 2rem;
+      border-bottom: 1px solid var(--gray-200);
+    }
+    .profile-row:last-child { border-bottom: none; }
+    @media (min-width: 640px) {
+      .profile-row { flex-direction: row; align-items: flex-start; gap: 2rem; }
+    }
+
+    .profile-key {
+      flex-shrink: 0;
+      width: 120px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--gray-400);
+      letter-spacing: 0.04em;
+      padding-top: 0.1rem;
+      margin-bottom: 0.35rem;
+    }
+    @media (min-width: 640px) { .profile-key { margin-bottom: 0; } }
+
+    .profile-val {
+      font-size: 0.95rem;
+      color: var(--gray-800);
+      font-weight: 500;
+      line-height: 1.7;
+    }
+    .profile-val strong {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--navy);
+    }
+    .profile-val small {
+      display: block;
+      font-size: 0.75rem;
+      color: var(--gray-400);
+      font-weight: 400;
+      margin-top: 0.15rem;
+    }
+
+    /* Map placeholder */
+    .map-placeholder {
+      margin-top: 0.75rem;
+      width: 100%;
+      height: 160px;
+      border-radius: 12px;
+      background: var(--gray-200);
+      border: 1px solid var(--gray-200);
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .map-grid {
+      position: absolute;
+      inset: 0;
+      opacity: 0.15;
+    }
+    .map-pin {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .map-pin-dot {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: var(--navy);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 16px rgba(10,22,40,0.3);
+      animation: bounce-pin 2s ease-in-out infinite;
+    }
+    @keyframes bounce-pin {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+    .map-pin-dot svg { width: 16px; height: 16px; color: #fff; }
+    .map-pin-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--navy);
+      background: #fff;
+      padding: 0.2rem 0.6rem;
+      border-radius: 100px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    #site-footer {
+      background: var(--navy);
+      padding: 3rem 0 2rem;
+      border-top: 1px solid rgba(0, 201, 255, 0.12);
+    }
+    .footer-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      align-items: flex-start;
+    }
+    @media (min-width: 768px) {
+      .footer-inner {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+    .footer-logo .logo-text-main { font-size: 1.1rem; }
+    .footer-copy {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.35);
+      letter-spacing: 0.04em;
+      margin-top: 0.5rem;
+    }
+    .footer-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      list-style: none;
+    }
+    .footer-nav a {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.55);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-nav a:hover { color: var(--cyan); }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       HEADER
+  ============================================================ -->
+  <header id="site-header">
+    <div class="container">
+      <div class="inner">
+        <!-- Logo -->
+        <a href="#" class="logo-link" aria-label="M&amp;S トップへ">
+          <div class="logo-mark">M&amp;S</div>
+          <div>
+            <div class="logo-text-main">M&amp;S</div>
+            <div class="logo-text-sub">Telecom Partner</div>
+          </div>
+        </a>
+
+        <!-- PC Nav -->
+        <nav aria-label="サイトナビゲーション">
+          <ul class="site-nav">
+            <li><a href="#features">強み</a></li>
+            <li><a href="#services">サービス</a></li>
+            <li><a href="#simulator">料金シミュレーション</a></li>
+            <li><a href="#profile">事業概要</a></li>
+          </ul>
+        </nav>
+
+        <!-- Mobile label -->
+        <span class="mobile-label">Telecom Solution</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+  <section id="hero">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-overlay" aria-hidden="true"></div>
+
+    <div class="container">
+      <div class="hero-grid">
+        <!-- Text -->
+        <div>
+          <div class="hero-badge">通信の最適化プロフェッショナル</div>
+          <h1 class="hero-title">
+            繋ぐ、広がる、<br>
+            <span class="accent">一歩先へ進むインフラ</span>
+          </h1>
+          <p class="hero-desc">
+            M&amp;Sは、携帯回線や光回線などの最新通信ソリューションのご提案を通じ、個人のお客様の暮らしの快適化、そして個人事業主・企業の皆様のビジネスのスピードアップとコスト削減を全力で後押しします。
+          </p>
+          <div class="hero-actions">
+            <a href="#simulator" class="btn-primary">削減目安をシミュレーションする</a>
+            <a href="#services" class="btn-outline">サービス内容を見る</a>
+          </div>
+        </div>
+
+        <!-- Visual card -->
+        <div class="hero-visual fade-up">
+          <div class="hero-card">
+            <img
+              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663384923944/5STUaMk3JxnoeccPLMCzez/network-visual-kTZFi72nUpMRgGaRfSgmyh.webp"
+              alt="通信ネットワークのビジュアル"
+              class="hero-card-img"
+              loading="eager"
+            />
+            <div class="hero-card-stats">
+              <div>
+                <div class="hero-stat-label">対応回線キャリア</div>
+                <div class="hero-stat-value">主要各社網羅</div>
+              </div>
+              <div>
+                <div class="hero-stat-label">ご提案スピード</div>
+                <div class="hero-stat-value em">最短即日対応</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FEATURES（強み）
+  ============================================================ -->
+  <section id="features">
+    <div class="container">
+      <div class="features-header fade-up">
+        <span class="section-label">Our Strengths</span>
+        <h2 class="section-title">M&amp;Sが選ばれる3つの強み</h2>
+        <div class="section-divider"></div>
+      </div>
+
+      <div class="features-grid">
+        <!-- 強み 01 -->
+        <div class="feature-card fade-up" style="transition-delay:0.05s">
+          <div class="feature-index">01</div>
+          <div class="feature-icon" style="background:rgba(0,82,163,0.1);">
+            <svg fill="none" stroke="#0052a3" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+            </svg>
+          </div>
+          <h3 class="feature-title">中立で幅広い選択肢</h3>
+          <p class="feature-desc">
+            特定のキャリアに偏ることなく、携帯回線・光回線・モバイルWi-Fiなど多数の選択肢からフラットな目線でお客様に最適なプランだけを選定・提案いたします。
+          </p>
+        </div>
+
+        <!-- 強み 02 -->
+        <div class="feature-card fade-up" style="transition-delay:0.12s">
+          <div class="feature-index">02</div>
+          <div class="feature-icon" style="background:rgba(0,201,255,0.1);">
+            <svg fill="none" stroke="#00C9FF" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+          </div>
+          <h3 class="feature-title">フットワークの軽さ</h3>
+          <p class="feature-desc">
+            個人事業主ならではの機動力と柔軟性でスピーディーに対応。複雑な契約手続きやプランの見直し時期のアドバイス、開通までの不安を解消します。
+          </p>
+        </div>
+
+        <!-- 強み 03 -->
+        <div class="feature-card fade-up" style="transition-delay:0.19s">
+          <div class="feature-index">03</div>
+          <div class="feature-icon" style="background:rgba(16,185,129,0.1);">
+            <svg fill="none" stroke="#10B981" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h3 class="feature-title">コスト最適化を追求</h3>
+          <p class="feature-desc">
+            「なんとなく払い続けている不要なオプション」を徹底排除し、家族全員の通信費やオフィスのネット代を劇的にスリム化する仕組みをご案内します。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SERVICES（サービス概要）
+  ============================================================ -->
+  <section id="services">
+    <div class="container">
+      <div class="services-header fade-up">
+        <span class="section-label">Services</span>
+        <h2 class="section-title">事業・サービス内容</h2>
+        <p>携帯回線からオフィス向け大容量光回線まで、多様なインフラを総合的にサポートします</p>
+        <div class="section-divider"></div>
+      </div>
+
+      <div class="services-grid">
+        <!-- サービス 1：携帯回線 -->
+        <div class="service-card fade-up" style="transition-delay:0.05s">
+          <div class="service-img-wrap">
+            <img
+              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663384923944/5STUaMk3JxnoeccPLMCzez/service-mobile-HndS5w3D2pHVCtPcNgDCmL.webp"
+              alt="携帯回線・SIM販売"
+              loading="lazy"
+            />
+            <div class="service-img-overlay"></div>
+            <span class="service-tag" style="background:rgba(0,82,163,0.85);color:#fff;">Mobile Service</span>
+          </div>
+          <div class="service-body">
+            <h3 class="service-title">携帯回線・SIM販売業務</h3>
+            <p class="service-desc">
+              格安SIMから大手通信キャリアの高速5G回線まで幅広く対応。個人のスマホ乗り換えはもちろん、法人のビジネススマートフォンやタブレットの一括導入もスピーディーに。最適な料金プラン設計をサポートします。
+            </p>
+            <ul class="service-list">
+              <li style="--dot-color:#0052a3">
+                <span style="width:6px;height:6px;border-radius:50%;background:#0052a3;flex-shrink:0;margin-top:0.55rem;"></span>
+                大手キャリア・格安SIMの最適な選定
+              </li>
+              <li>
+                <span style="width:6px;height:6px;border-radius:50%;background:#0052a3;flex-shrink:0;margin-top:0.55rem;"></span>
+                法人名義でのスマホ一括導入コスト見直し
+              </li>
+              <li>
+                <span style="width:6px;height:6px;border-radius:50%;background:#0052a3;flex-shrink:0;margin-top:0.55rem;"></span>
+                利用用途（通話メイン・データメイン）に沿ったプラン提案
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- サービス 2：光回線 -->
+        <div class="service-card fade-up" style="transition-delay:0.12s">
+          <div class="service-img-wrap">
+            <img
+              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663384923944/5STUaMk3JxnoeccPLMCzez/service-fiber-2k6KG8MbuBD4cKCQxdJ4Ab.webp"
+              alt="光回線・高速Wi-Fi販売"
+              loading="lazy"
+            />
+            <div class="service-img-overlay"></div>
+            <span class="service-tag" style="background:rgba(0,153,204,0.85);color:#fff;">Fixed Line</span>
+          </div>
+          <div class="service-body">
+            <h3 class="service-title">光回線・高速Wi-Fi販売</h3>
+            <p class="service-desc">
+              自宅テレワーク、または店舗やオフィスの要となる「高速かつ安定した光回線」のご提案。様々なプロバイダーを吟味し、キャッシュバックキャンペーンなども考慮したもっとも得なルートをご提示します。
+            </p>
+            <ul class="service-list">
+              <li>
+                <span style="width:6px;height:6px;border-radius:50%;background:#00C9FF;flex-shrink:0;margin-top:0.55rem;"></span>
+                オフィス・店舗・一軒家・マンションの光回線コンサルティング
+              </li>
+              <li>
+                <span style="width:6px;height:6px;border-radius:50%;background:#00C9FF;flex-shrink:0;margin-top:0.55rem;"></span>
+                スマートフォンのセット割に対応した回線選定
+              </li>
+              <li>
+                <span style="width:6px;height:6px;border-radius:50%;background:#00C9FF;flex-shrink:0;margin-top:0.55rem;"></span>
+                工事調整・プロバイダー変更に伴う煩雑な手続きを支援
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SIMULATOR（通信費削減シミュレーター）
+  ============================================================ -->
+  <section id="simulator">
+    <div class="container">
+      <div class="simulator-header fade-up">
+        <span class="section-label">Simulation</span>
+        <h2 class="section-title">通信費削減シミュレーター</h2>
+        <p>あなたの月々のネット代やスマホ代、もしかしたら払いすぎているかも？</p>
+        <div class="section-divider"></div>
+      </div>
+
+      <div class="simulator-card fade-up" style="transition-delay:0.08s">
+        <div class="simulator-grid">
+          <!-- 入力 -->
+          <div>
+            <div class="sim-group-title">現在の月額利用料を入力</div>
+            <div class="sim-field">
+              <label for="input-mobile">スマートフォン代（ご家族合計）</label>
+              <div class="sim-input-wrap">
+                <input type="number" id="input-mobile" value="15000" min="0" step="100" />
+                <span class="sim-unit">円 / 月</span>
+              </div>
+            </div>
+            <div class="sim-field">
+              <label for="input-broadband">インターネット回線代（光回線等）</label>
+              <div class="sim-input-wrap">
+                <input type="number" id="input-broadband" value="6500" min="0" step="100" />
+                <span class="sim-unit">円 / 月</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 結果 -->
+          <div class="sim-result">
+            <div>
+              <div class="sim-result-label">M&amp;S提案による削減予想</div>
+              <div class="sim-savings">
+                <span class="sim-savings-num" id="calc-savings">5,200</span>
+                <span class="sim-savings-unit">円 / 月 節約！</span>
+              </div>
+              <div class="sim-yearly">
+                年間に換算すると、なんと約 <strong id="calc-yearly">62,400</strong> 円のコストをカット
+              </div>
+            </div>
+            <div class="sim-note">
+              ※スマートフォンは約35%、光回線は約15%の削減を目安とした試算値です。プランの統廃合・キャッシュバック・セット割の適用などで、通信品質はそのままに驚くほどお得になります。
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PROFILE（事業概要）
+  ============================================================ -->
+  <section id="profile">
+    <div class="container">
+      <div class="profile-header fade-up">
+        <span class="section-label">Profile</span>
+        <h2 class="section-title">事業概要</h2>
+        <div class="section-divider"></div>
+      </div>
+
+      <div class="profile-card fade-up" style="transition-delay:0.08s">
+        <div class="profile-row">
+          <span class="profile-key">屋号</span>
+          <div class="profile-val"><strong>M&amp;S</strong></div>
+        </div>
+        <div class="profile-row">
+          <span class="profile-key">事業内容</span>
+          <div class="profile-val">携帯回線・光回線等の販売業務および通信コスト削減コンサルティング</div>
+        </div>
+        <div class="profile-row">
+          <span class="profile-key">代表者</span>
+          <div class="profile-val">
+            <strong>玉城 輝</strong>
+            <small>Hikaru Tamashiro</small>
+          </div>
+        </div>
+        <div class="profile-row">
+          <span class="profile-key">所在地</span>
+          <div class="profile-val">
+            〒176-0021<br>
+            東京都練馬区貫井2-31-23
+            <!-- 地図プレースホルダー -->
+            <div class="map-placeholder" aria-label="地図プレースホルダー">
+              <svg class="map-grid" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <pattern id="map-grid-pat" width="24" height="24" patternUnits="userSpaceOnUse">
+                    <path d="M 24 0 L 0 0 0 24" fill="none" stroke="#94A3B8" stroke-width="0.8"/>
+                  </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#map-grid-pat)"/>
+              </svg>
+              <div class="map-pin">
+                <div class="map-pin-dot">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                  </svg>
+                </div>
+                <span class="map-pin-label">東京都練馬区</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer id="site-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <a href="#" class="logo-link footer-logo" aria-label="M&amp;S トップへ">
+            <div class="logo-mark" style="width:36px;height:36px;font-size:0.85rem;">M&amp;S</div>
+            <div>
+              <div class="logo-text-main">M&amp;S</div>
+              <div class="logo-text-sub">Telecom Partner</div>
+            </div>
+          </a>
+          <p class="footer-copy">&copy; 2025 M&amp;S. All rights reserved.</p>
+        </div>
+        <nav aria-label="フッターナビゲーション">
+          <ul class="footer-nav">
+            <li><a href="#features">強み</a></li>
+            <li><a href="#services">サービス</a></li>
+            <li><a href="#simulator">料金シミュレーション</a></li>
+            <li><a href="#profile">事業概要</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       SCRIPTS
+  ============================================================ -->
+  <script>
+    /* ---- シミュレーター計算 ---- */
+    const inputMobile    = document.getElementById('input-mobile');
+    const inputBroadband = document.getElementById('input-broadband');
+    const calcSavings    = document.getElementById('calc-savings');
+    const calcYearly     = document.getElementById('calc-yearly');
+
+    function calculate() {
+      const mobile    = parseFloat(inputMobile.value)    || 0;
+      const broadband = parseFloat(inputBroadband.value) || 0;
+      const savings   = Math.round(mobile * 0.35 + broadband * 0.15);
+      const yearly    = savings * 12;
+      calcSavings.textContent = savings.toLocaleString('ja-JP');
+      calcYearly.textContent  = yearly.toLocaleString('ja-JP');
+    }
+
+    inputMobile.addEventListener('input', calculate);
+    inputBroadband.addEventListener('input', calculate);
+
+    /* ---- スクロールフェードイン ---- */
+    const fadeEls = document.querySelectorAll('.fade-up');
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12 }
+    );
+    fadeEls.forEach(el => observer.observe(el));
+
+    /* ---- ヘッダースクロール時の背景強化 ---- */
+    const header = document.getElementById('site-header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 60) {
+        header.style.background = 'rgba(10, 22, 40, 0.97)';
+      } else {
+        header.style.background = 'rgba(10, 22, 40, 0.88)';
+      }
+    }, { passive: true });
+  </script>
+
+</body>
+</html>
